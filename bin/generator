@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "generator"
+require "../lib/environment"
+
+Generator::User.new.welcome
