@@ -16,8 +16,8 @@ class User
       case input 
        when input == "list"
         beer_list
-       when input == input.get_beer_by_name
-        get_beer_by_name
+       when get_beer_by_name(input)
+        get_beer_by_name(input)
        end
     end
    
