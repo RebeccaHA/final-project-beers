@@ -9,7 +9,7 @@ class User
   
 
     def welcome
-     puts 'Hello, and welcome to an alcholics dream, enter a beer or type "list"'
+     puts 'Hello, and welcome to an alcoholics dream, enter a beer or type "list"'
       
      input = gets.chomp
 
