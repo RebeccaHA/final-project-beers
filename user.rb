@@ -2,8 +2,9 @@ require'pry'
 
 class User
 
-    def intialize
+    def initialize
         API.get_beers.each {|beer| Beer.new(beer)}
+        welcome
     end
 
   

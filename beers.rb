@@ -1,4 +1,4 @@
-class Generator::Beer
+class Beer
 attr_accessor :name, :description, :abv, :fooding_pairing
 @@all = []
 
