@@ -16,6 +16,8 @@ class User
       case input 
        when input == "list"
         beer_list
+       when input == input.get_beer_by_name
+        get_beer_by_name
        end
     end
    
@@ -34,4 +36,4 @@ class User
     end
 end
 
-  User.new.beer_list
+ 
