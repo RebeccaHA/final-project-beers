@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "generator"
-require "../lib/environment"
+require_relative '../lib/environment'
 
-Generator::User.new.welcome
+
+
+Generator::API.get_beers

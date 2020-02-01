@@ -1,6 +1,9 @@
 class Generator::API
-    BASE = 'https://www.foaas.com/'
+    BASE = 'https://api.punkapi.com/v2/'
 
-    def get_swear
+    def self.get_beers
+    HTTParty.get(BASE + "/beers")
+    end
 
- def 
+  
+end

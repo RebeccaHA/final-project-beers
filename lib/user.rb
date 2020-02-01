@@ -1,24 +1,38 @@
+require'pry'
+
 class Generator::User
 
-    def initialize
-        
-    end
-
     def get_instance 
-        call api 
-        with that info call other classes
+        Generator::API.get_beers.each {|beer| Generator::Beer.new(beer)}
     end
 
     def welcome
+     puts 'Hello, and welcome to an alcholics dream, enter a beer or type "list"'
+      
+     input = gets.chomp
+
+      case input 
+       when input == "list"
+        beer_list
+      end
+    end
+
+    def beer_list
+        organised_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
+         organised_list.each.with_index(1) do |beer, index|
+          puts "#{index}. #{beer.name} "
+        end
+    end
+
+    def self.get_beer_by_name(input)
+        Generator::Beer.all.detect {|beer| beer.name == name}
+    end
     
-    end
 
-    def prompt_user
-     if input 
-     else
-    end
-
+    
+    
     def exit
     end
+end
 
   

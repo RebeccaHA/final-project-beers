@@ -1,5 +1,0 @@
-class Generator::Foass
-
-
-    
-end

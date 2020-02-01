@@ -1,36 +1,19 @@
 # Generator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/generator`. To experiment with that code, run `bin/console` for an interactive prompt.
+## What I want it to do?
+------------------------
+1. Welcome the user
+2. Ask the user to select from a selection of words (eventually put in a random number and it displays a word)
+3. Display choice word and comback 
+5. Ask if they would like to see another
+6. Stop onces user prints exit
 
-TODO: Delete this and the text above, and describe your gem
+## What data attributes?
+-------------------
+1. Access to a word database
+2. Access to a comeback database
+3. User input
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'generator'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install generator
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/<github username>/generator.
-
+## future..
+1. Make it find a word and return a definition
+2. Add words and definitions
