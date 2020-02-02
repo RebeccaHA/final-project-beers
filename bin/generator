@@ -4,4 +4,4 @@ require "bundler/setup"
 require_relative '../lib/environment'
 
 
-User.new.welcome
+User.new.call

@@ -1,3 +1,6 @@
+require_relative "./user"
+require_relative "./api"
+
 class Beer
 attr_accessor :name, :description, :abv, :fooding_pairing
 @@all = []

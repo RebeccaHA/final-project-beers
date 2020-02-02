@@ -1,39 +1,63 @@
 require'pry'
+require_relative './api'
+require_relative './beers'
 
 class User
 
-    def initialize
-        API.get_beers.each {|beer| Beer.new(beer)}
+    
+
+    def call
+        puts 'Hello, and welcome to an alcoholics dream, enter a beer or type "list"'
         welcome
     end
 
   
 
     def welcome
-     puts 'Hello, and welcome to an alcoholics dream, enter a beer or type "list"'
-      
-     input = gets.chomp
-
-      case input 
-       when input == "list"
+     input = gets.chomp.downcase
+      if input == "list"
+        beers
         beer_list
-       when get_beer_by_name(input)
+        get_beer_by_number
+      elsif get_beer_by_name(input)
         get_beer_by_name(input)
+      else invalid_input
        end
     end
    
+    def beers
+       @beers = API.get_beers.each {|beer| Beer.new(beer)}
+       @beers
+    end
+
     def beer_list
-        organised_list = Beer.all.sort {|a,b| a.name <=> b.name}
-         organised_list.each.with_index(1) do |beer, index|
-          puts "#{index}. #{beer.name} "
+     organised_list = Beer.all.sort {|a,b| a.name <=> b.name}
+     organised_list.each.with_index(1) do |beer, index|
+      puts "#{index}. #{beer.name} "
         end
     end
 
-    def get_beer_by_name(input)
+    def valid_input(input, data)
+     input.to_i <= data.length && input.to_i > 0
+    end
+
+    def invalid_input
+        puts "Are you sure you like beer? Try typing a name or list, or get out of here!"
+    end
+
+    def get_beer_by_number
+    
+    end
+
+
+    def get_beer_by_name(chosen_beer)
+        input = gets.chomp.downcase
         Beer.all.detect {|beer| beer.name == name}
+   
     end
 
     def exit
+     puts "Now go get yourself a beer"
     end
 end
 
