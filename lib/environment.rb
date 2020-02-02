@@ -2,10 +2,9 @@ require_relative "./generator/version"
 require 'require_all'
 require 'httparty'
 require 'pry'
-require_relative "../lib/user.rb"
-require_relative "../lib/api.rb"
-require_relative "../lib/beers.rb"
-
+require_relative "./user"
+require_relative "./api"
+require_relative "./beers"
 
 
 
