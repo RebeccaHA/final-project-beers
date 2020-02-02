@@ -18,7 +18,8 @@ class User
         get_more_info
       elsif input == get_beer_by_name
         get_beer_by_name
-      else
+        get_more_info
+      elsif 
         invalid_input
       end
     end
@@ -34,7 +35,6 @@ class User
         end
     end
 
-
     def get_beer_by_number
         puts "----Enter a number between 1-25----"
         input = gets.chomp.to_i
@@ -42,10 +42,11 @@ class User
           beer_list = Beer.all.sort {|a,b| a.name <=> b.name}
           beer = beer_list[input-1]
           puts "You picked #{beer.name}, find out about it's food pairings, description or abv value "
+          get_more_info
          else 
           invalid_input
         end
-        get_more_info
+        
     end
 
     def valid_input(input, data)
@@ -56,21 +57,25 @@ class User
       puts "Are you sure you like beer? Try typing a name or list"
     end
 
+
     def get_beer_by_name
-        input = gets.chomp.downcase
-        Beer.all.detect {|beer| beer.name == name}
-        puts "You picked #{beer.name}, find out about it's food pairings, description or abv value "
-        get_more_info
+     input = gets.chomp.downcase
+     Beer.all.each do |beer|
+        if beer.name.downcase.include?(input)
+            puts "You picked #{beer.name}, find out about it's food pairings, description or abv value "
+            get_more_info
+        end
+     end
     end
 
     def get_more_info
         input = gets.chomp.downcase
         if input == "food pairing"
-            puts"#{beer.food_pairing}"
+            puts"#{Beer.food_pairing}"
         elsif input == "abv"
-            puts "#{beer.abv}"
+            puts "#{Beer.abv}"
         elsif input == "decscription"
-            puts "#{beer.description}"
+            puts "#{Beer.description}"
         end
     end
 
