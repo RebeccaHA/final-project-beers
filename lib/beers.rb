@@ -2,7 +2,7 @@ require_relative "./user"
 require_relative "./api"
 
 class Beer
-attr_accessor :name, :description, :abv, :fooding_pairing
+attr_accessor :name, :description, :abv, :food_pairing
 @@all = []
 
     def initialize(attributes)

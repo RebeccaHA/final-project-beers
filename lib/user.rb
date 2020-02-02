@@ -16,11 +16,13 @@ class User
         beer_list
         get_beer_by_number
         get_more_info
-      elsif input == get_beer_by_name
+      elsif input == Beer.name
+        beers
         get_beer_by_name
         get_more_info
-      elsif 
-        invalid_input
+      elsif input == "exit"
+        exit
+      else invalid_input
       end
     end
    
@@ -55,6 +57,7 @@ class User
 
     def invalid_input
       puts "Are you sure you like beer? Try typing a name or list"
+      welcome
     end
 
 
