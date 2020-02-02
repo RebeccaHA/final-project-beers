@@ -26,8 +26,7 @@ class User
     end
    
     def beers
-       @beers = API.get_beers.each {|beer| Beer.new(beer)}
-       @beers
+        API.get_beers.each {|beer| Beer.new(beer)}
     end
 
     def beer_list
@@ -37,17 +36,20 @@ class User
         end
     end
 
+    def get_beer_by_number
+    
+    end
+
     def valid_input(input, data)
      input.to_i <= data.length && input.to_i > 0
     end
 
     def invalid_input
+      
         puts "Are you sure you like beer? Try typing a name or list, or get out of here!"
     end
 
-    def get_beer_by_number
-    
-    end
+  
 
 
     def get_beer_by_name(chosen_beer)
