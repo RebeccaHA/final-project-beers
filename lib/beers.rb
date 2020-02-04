@@ -1,5 +1,6 @@
 require_relative "./user"
 require_relative "./api"
+require 'pry'
 
 class Beer
 attr_accessor :name, :description, :abv, :food_pairing
@@ -17,8 +18,8 @@ attr_accessor :name, :description, :abv, :food_pairing
 
     def self.all
         @@all
+ 
     end
 
-
-
 end
+

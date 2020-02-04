@@ -5,7 +5,7 @@ require_relative './beers'
 class User
     
     def call
-        puts 'Hello, and welcome to an alcoholics dream, enter a beer or type "list"'
+        puts 'Hello, and welcome to an alcoholics dream, enter "beer" or type "list"'
         welcome
     end
 
@@ -16,7 +16,7 @@ class User
         beer_list
         get_beer_by_number
         get_more_info
-      elsif input == Beer.name
+      elsif input == "beer"
         beers
         get_beer_by_name
         get_more_info
@@ -44,11 +44,9 @@ class User
           beer_list = Beer.all.sort {|a,b| a.name <=> b.name}
           beer = beer_list[input-1]
           puts "You picked #{beer.name}, find out about it's food pairings, description or abv value "
-          get_more_info
          else 
           invalid_input
-        end
-        
+        end 
     end
 
     def valid_input(input, data)
@@ -56,35 +54,38 @@ class User
     end
 
     def invalid_input
-      puts "Are you sure you like beer? Try typing a name or list"
+      puts "Are you sure you like beer? Try typing beer or list"
       welcome
     end
 
 
     def get_beer_by_name
-     input = gets.chomp.downcase
-     Beer.all.each do |beer|
-        if beer.name.downcase.include?(input)
-            puts "You picked #{beer.name}, find out about it's food pairings, description or abv value "
-            get_more_info
-        end
+     puts "Alright prove it, please type beer name"
+     input = gets.chomp
+
+     Beer.all.detect do |beer|
+      if beer.name == input
+        puts "You picked #{beer.name}, find out about it's food pairings, description or abv value "
+    
+      end
      end
     end
 
     def get_more_info
         input = gets.chomp.downcase
         if input == "food pairing"
-            puts"#{Beer.food_pairing}"
+            puts"#{beer.food_pairing}"
         elsif input == "abv"
-            puts "#{Beer.abv}"
+            puts "#{beer.abv}"
         elsif input == "decscription"
-            puts "#{Beer.description}"
+            puts "#{beer.description}"
         end
     end
 
     def exit
      puts "Now go get yourself a beer"
     end
+
 end
 
  
