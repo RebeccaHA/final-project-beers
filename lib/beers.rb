@@ -18,8 +18,10 @@ attr_accessor :name, :description, :abv, :food_pairing
 
     def self.all
         @@all
- 
     end
 
+    def self.clear
+        @@all.clear
+    end
 end
 
