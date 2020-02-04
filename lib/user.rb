@@ -4,24 +4,26 @@ require_relative './beers'
 
 class User
     
+   def initialize
+     beers
+   end
+
     def call
-        puts 'Hello, and welcome to an alcoholics dream, enter "beer" or type "list"'
+        puts 'Hello, and welcome to an alcoholics dream, enter a beer name or type "list"'
         welcome
     end
 
     def welcome
-     input = gets.chomp
-      
-      beers
-     
+     input = gets.chomp.downcase
+        
       if input == "list"
-       
         beer_list
         get_beer_by_number
         get_more_info
+        make_another_selection
       elsif get_beer_by_name(input)
-      
         get_more_info
+        make_another_selection
       elsif input == "exit"
         exit
       else invalid_input
@@ -74,13 +76,18 @@ class User
 
     def get_more_info
         input = gets.chomp.downcase
-        if input == "food pairing"
-            puts"#{@current_beer.food_pairing}"
+        if input == "food pairings"
+            puts "Have you tested it with these types of foods#{@current_beer.food_pairing}"
         elsif input == "abv"
-            puts "#{@current_beer.abv}"
-        elsif input == "decscription"
+            puts "The abv value is...#{@current_beer.abv}, not too strong, maybe have another?"
+        elsif input == "description"
             puts "#{@current_beer.description}"
         end
+    end
+
+    def make_another_selection
+      puts "Still thristy? Type another beer name or hit the list"
+      welcome
     end
 
     def exit
