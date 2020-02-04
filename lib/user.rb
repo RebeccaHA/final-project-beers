@@ -2,12 +2,9 @@ require'pry'
 require_relative './api'
 require_relative './beers'
 
+module Brewery
 class User
     
-  
-    
-  
-
     def call
         puts 'Hello, and welcome to an alcoholics dream, enter a beer name or type "list"'
         beers
@@ -27,28 +24,29 @@ class User
         make_another_selection
       elsif input == "exit"
         exit
-      else invalid_input
+      elsif input == invalid_input
       end
     end
    
     def beers
-        API.get_beers.each.uniq{|beer| Beer.new(beer)}
+      Brewery::API.get_beers.each.uniq{|beer| Brewery::Beer.new(beer)}
     end
 
     def beer_list
-     organised_list = Beer.all.sort {|a,b| a.name <=> b.name}
+     organised_list = Brewery::Beer.all.sort {|a,b| a.name <=> b.name}
      organised_list.each.with_index(1) do |beer, index|
-      puts "#{index}. #{beer.name} "
+      puts "#{index}. #{beer.name}"
         end
     end
 
     def get_beer_by_number
         puts "----Enter a number between 1-25----"
         input = gets.chomp.to_i
-         if input > 0 && input <= Beer.all.length
-          beer_list = Beer.all.sort {|a,b| a.name <=> b.name}
+         if input > 0 && input <= Brewery::Beer.all.length
+          beer_list = Brewery::Beer.all.sort {|a,b| a.name <=> b.name}
           @current_beer = beer_list[input-1]
           puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
+
         end 
     end
  
@@ -64,7 +62,7 @@ class User
 
     def get_beer_by_name(input)
      
-      Beer.all.detect do |beer|
+      Brewery::Beer.all.detect do |beer|
       if beer.name == input
         @current_beer = beer
         puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
@@ -76,7 +74,7 @@ class User
     def get_more_info
         input = gets.chomp.downcase
         if input == "food pairings"
-            puts "Have you tasted it with these types of foods#{@current_beer.food_pairing.join(" , ")}"
+            puts "Have you tasted it with these types of foods #{@current_beer.food_pairing.join(" , ")}"
         elsif input == "abv"
             puts "The abv value is...#{@current_beer.abv}, not too strong, maybe have another?"
         elsif input == "description"
@@ -94,5 +92,5 @@ class User
     end
 
 end
-
+end
  

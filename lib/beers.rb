@@ -1,7 +1,7 @@
 require_relative "./user"
 require_relative "./api"
 require 'pry'
-
+module Brewery 
 class Beer
 attr_accessor :name, :description, :abv, :food_pairing
 @@all = []
@@ -24,4 +24,4 @@ attr_accessor :name, :description, :abv, :food_pairing
         @@all.clear
     end
 end
-
+end
