@@ -1,16 +1,12 @@
-require_relative "./user"
-require_relative "./api"
-require 'pry'
-module Brewery 
-class Beer
-attr_accessor :name, :description, :abv, :food_pairing
-@@all = []
+class Generator::Beer
+    attr_accessor :name, :description, :abv, :food_pairing
+    @@all = []
 
     def initialize(attributes)
         attributes.each do |k,v|
             begin
                 self.send("#{k}=",v)
-            rescue
+            rescue NoMethodError
             end
         end
         @@all << self
@@ -30,4 +26,4 @@ attr_accessor :name, :description, :abv, :food_pairing
      end
    end
 end
-end
+

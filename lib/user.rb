@@ -1,9 +1,5 @@
-require'pry'
-require_relative './api'
-require_relative './beers'
 
-module Brewery
- class User
+ class Generator::User
     
   def welcome
     puts 'Hello, and welcome to an alcoholics dream, fill up your glass and lets go'
@@ -29,11 +25,11 @@ module Brewery
   end
    
   def beers
-    Brewery::API.get_beers.each.uniq{|beer| Brewery::Beer.new(beer)}
+    Generator::API.get_beers.each.uniq{|beer| Generator::Beer.new(beer)}
   end
 
   def beer_list
-    organised_list = Brewery::Beer.all.sort {|a,b| a.name <=> b.name}
+    organised_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
     organised_list.each.with_index(1) do |beer, index|
     puts "#{index}. #{beer.name}"
     end
@@ -43,8 +39,8 @@ module Brewery
   def get_beer_by_number
     input = gets.chomp
          
-   if input.to_i > 0 && input.to_i <= Brewery::Beer.all.length
-    beer_list = Brewery::Beer.all.sort {|a,b| a.name <=> b.name}
+   if input.to_i > 0 && input.to_i <= Generator::Beer.all.length
+    beer_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
     @current_beer = beer_list[input.to_i-1]
      puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
    elsif input == 'exit'
@@ -55,7 +51,7 @@ module Brewery
   end
 
   def get_beer_by_name(input)
-    specific_beer = Brewery::Beer.get_beer_by_name(input)
+    specific_beer = Generator::Beer.get_beer_by_name(input)
    if specific_beer != nil
     @current_beer = specific_beer
     puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
@@ -97,13 +93,10 @@ module Brewery
     get_more_info
   end
 
-  
-
   def exit(input)   
-    input == "exit" 
     abort "Now go get yourself a beer!"
   end
 
  end
-end
+
  
