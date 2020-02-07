@@ -5,25 +5,26 @@ require_relative './beers'
 module Brewery
  class User
     
-  def call
+  def welcome
+    puts 'Hello, and welcome to an alcoholics dream, fill up your glass and lets go'
     beers
-    welcome
+    menu
   end
 
-  def welcome
-    puts 'Hello, and welcome to an alcoholics dream, enter a beer name or type "list"'
+  def menu
+    puts 'Enter a beer name or type "list"'
     input = gets.chomp
-      
+   
    if input == "list"
     beer_list
     get_beer_by_number
-    get_more_info
-    make_another_selection  
+    get_more_info 
    elsif get_beer_by_name(input)
     get_more_info
-    make_another_selection
-   else
-    exit(input) 
+   elsif input == "exit"
+    exit(input)
+   else 
+    invalid_input
    end
   end
    
@@ -36,25 +37,21 @@ module Brewery
     organised_list.each.with_index(1) do |beer, index|
     puts "#{index}. #{beer.name}"
     end
+    puts "----Enter a number between 1-25----"
   end
 
   def get_beer_by_number
-    puts "----Enter a number between 1-25----"
     input = gets.chomp
          
    if input.to_i > 0 && input.to_i <= Brewery::Beer.all.length
     beer_list = Brewery::Beer.all.sort {|a,b| a.name <=> b.name}
     @current_beer = beer_list[input.to_i-1]
      puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
+   elsif input == 'exit'
+    exit(input)
+   else 
+    invalid_input_number 
    end 
-  end
- 
-  def valid_input(input, data)
-    input.to_i <= data.length && input.to_i > 0
-  end
-
-  def invalid_input
-    puts "Are you sure you like beer? Try typing beer or list" 
   end
 
   def get_beer_by_name(input)
@@ -74,14 +71,33 @@ module Brewery
     puts "The abv value is...#{@current_beer.abv}, not too strong!"
    elsif input == "description"
     puts "#{@current_beer.description}"
+   elsif input == "make another selection"
+    menu
+   elsif input == "exit"
+    exit(input)
+   else 
+    invalid_input_get_more
    end
+   puts 'Did that wet your whistle type "abv", "food pairings", "description" or "make another selection" to find out more'
+   get_more_info
   end
 
-  def make_another_selection
-    sleep(0.5)
-    puts "Still thristy? Maybe have another.. type another beer name or hit the list"
-    welcome
+  def invalid_input
+    puts "Invalid input!"
+    menu
   end
+
+  def invalid_input_number
+    puts "Invalid input! Are you sure you like beer? Try typing a number between 1-25" 
+    get_beer_by_number
+  end
+
+  def invalid_input_get_more
+    puts "Invalid input! Are you sure you like beer? Try typing 'abv', 'food pairings' or 'description" 
+    get_more_info
+  end
+
+  
 
   def exit(input)   
     input == "exit" 

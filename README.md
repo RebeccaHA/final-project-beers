@@ -1,6 +1,7 @@
 # Generator
 
-
+## What's the program?
+I like beer, I mean who doesn't?! This programme is using the Punk IPA API (wow that's a mouthful) creating a directory of all Punk's delicious offerings. If you are a real beer conicer you can find out about food pairings, abv and the beer description. Enjoy, Chin Chin
 
 ## How to run the program
 To run the program, follow these simple steps: 
@@ -19,7 +20,10 @@ $ ruby bin/generator
 The program is as easy as ordering a beer, you can select a beer by name by typing the specific beer name like so "Beer Name" or get a list of beers by typing "list". Once your beer is selected you can check its abv('abv'), food pairings ('food pairings') and description (description). To exit type 'exit' at any time. Cheers!
 
 ## License
-The gem is available as open source under the terms of the MIT License.
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/final-project-beers.
 
 
 ## Developer notes
