@@ -47,8 +47,6 @@ class User
           @current_beer = beer_list[input.to_i-1]
           puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
          end 
-         exit(input) 
-    
     end
  
     def valid_input(input, data)
@@ -71,12 +69,10 @@ class User
        
      end
 
-
-
     def get_more_info
         input = gets.chomp.downcase
         if input == "food pairings"
-            puts "Have you tasted it with these types of foods #{@current_beer.food_pairing.join(" , ")}"
+            puts "Have you tasted it with these types of foods: #{@current_beer.food_pairing.join(", ")}"
         elsif input == "abv"
             puts "The abv value is...#{@current_beer.abv}, not too strong!"
         elsif input == "description"
