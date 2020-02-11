@@ -42,7 +42,7 @@
    if input.to_i > 0 && input.to_i <= Generator::Beer.all.length
     beer_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
     @current_beer = beer_list[input.to_i-1]
-     puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
+     puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings' or 'description'"
    elsif input == 'exit'
     exit(input)
    else 
