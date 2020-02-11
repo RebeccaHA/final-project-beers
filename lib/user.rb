@@ -9,7 +9,7 @@
 
   def menu
     puts 'Enter a beer name or type "list"'
-    input = gets.chomp
+    input = gets.chomp.downcase
    
    if input == "list"
     beer_list
@@ -17,7 +17,7 @@
     get_more_info 
    elsif get_beer_by_name(input)
     get_more_info
-   elsif input == "exit"
+   elsif input == "exit" || input == "EXIT"
     exit(input)
    else 
     invalid_input
@@ -54,7 +54,7 @@
     specific_beer = Generator::Beer.get_beer_by_name(input)
    if specific_beer != nil
     @current_beer = specific_beer
-    puts "You picked #{@current_beer.name}, find out about it's food pairings, description or abv value "
+    puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings', 'description'"
     specific_beer
    end  
   end
@@ -67,14 +67,14 @@
     puts "The abv value is...#{@current_beer.abv}, not too strong!"
    elsif input == "description"
     puts "#{@current_beer.description}"
-   elsif input == "make another selection"
+   elsif input == "more beer"
     menu
    elsif input == "exit"
     exit(input)
    else 
     invalid_input_get_more
    end
-   puts 'Did that wet your whistle type "abv", "food pairings", "description" or "make another selection" to find out more'
+   puts 'Did that wet your whistle type "abv", "food pairings", "description" or "more beer" to find out more'
    get_more_info
   end
 
