@@ -9,7 +9,7 @@
 
   def menu
     puts 'Enter a beer name or type "list"'
-    input = gets.chomp.downcase
+    input = gets.chomp
    
    if input == "list"
     beer_list
@@ -54,7 +54,7 @@
     specific_beer = Generator::Beer.get_beer_by_name(input)
    if specific_beer != nil
     @current_beer = specific_beer
-    puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings', 'description'"
+    puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings' or 'description'"
     specific_beer
    end  
   end
