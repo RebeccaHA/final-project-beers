@@ -2,6 +2,7 @@ class Generator::Beer
     attr_accessor :name, :description, :abv, :food_pairing
     @@all = []
 
+
     def initialize(attributes)
         attributes.each do |k,v|
             begin
@@ -20,7 +21,7 @@ class Generator::Beer
         @@all.clear
     end
 
-   def self.get_beer_by_name(input)
+   def self.find_beer(input)
      self.all.detect do |beer|
         beer.name == input 
      end

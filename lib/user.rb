@@ -10,9 +10,9 @@
   def menu
     puts 'Enter a beer name or type "list"'
     input = gets.chomp
-   
+
    if input == "list"
-    beer_list
+    ten_beer_list
     get_beer_by_number
     get_more_info 
    elsif get_beer_by_name(input)
@@ -27,31 +27,52 @@
   def beers
     Generator::API.get_beers.each.uniq{|beer| Generator::Beer.new(beer)}
   end
+#old beer list before additional task
+ # def beer_list
+  #  @organised_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
+  #  @organised_list.each.with_index(1) do |beer, index|
+  #  puts "#{index}. #{beer.name}"
+  #  end
+ #   puts "----Enter a number between 1-25----"
+ # end
 
-  def beer_list
+  def ten_beer_list
     organised_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
-    organised_list.each.with_index(1) do |beer, index|
+    puts "Heres 10 ice cold beers, see more or quench your thirst and select a beer by number"
+    n = 0
+    organised_list.slice(n, 10).each.with_index(1) do |beer,index|
     puts "#{index}. #{beer.name}"
     end
-    puts "----Enter a number between 1-25----"
+    puts "do you want to see 10 more? type 'y' or pick one!"
+    input = gets.chomp
+  
+     if input == 'y'
+      n += 10
+      organised_list.slice(n, 10).each.with_index(1) do |beer,index|
+        puts "#{index}. #{beer.name}"
+      end
+    puts  "do you want to see 10 more? type 'y' or pick one!"  
+    
+    end
   end
+
+  
 
   def get_beer_by_number
     input = gets.chomp
-         
    if input.to_i > 0 && input.to_i <= Generator::Beer.all.length
     beer_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
     @current_beer = beer_list[input.to_i-1]
      puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings' or 'description'"
-   elsif input == 'exit'
-    exit(input)
+    elsif input == 'exit'
+      exit(input)
    else 
     invalid_input_number 
    end 
   end
 
   def get_beer_by_name(input)
-    specific_beer = Generator::Beer.get_beer_by_name(input)
+    specific_beer = Generator::Beer.find_beer(input)
    if specific_beer != nil
     @current_beer = specific_beer
     puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings' or 'description'"
@@ -84,7 +105,7 @@
   end
 
   def invalid_input_number
-    puts "Invalid input! Are you sure you like beer? Try typing a number between 1-25" 
+    puts "Invalid input! Are you sure you like beer? Try typing a number between 1-10" 
     get_beer_by_number
   end
 
@@ -96,6 +117,8 @@
   def exit(input)   
     abort "Now go get yourself a beer!"
   end
+
+
 
  end
 
