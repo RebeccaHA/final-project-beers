@@ -13,7 +13,6 @@
 
    if input == "list"
     ten_beer_list
-    get_beer_by_number
     get_more_info 
    elsif get_beer_by_name(input)
     get_more_info
@@ -29,8 +28,8 @@
   end
 #old beer list before additional task
  # def beer_list
-  #  @organised_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
-  #  @organised_list.each.with_index(1) do |beer, index|
+  #  organised_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
+  #  organised_list.each.with_index(1) do |beer, index|
   #  puts "#{index}. #{beer.name}"
   #  end
  #   puts "----Enter a number between 1-25----"
@@ -43,31 +42,32 @@
     organised_list.slice(n, 10).each.with_index(1) do |beer,index|
     puts "#{index}. #{beer.name}"
     end
+    
     puts "do you want to see 10 more? type 'y' or pick one!"
     input = gets.chomp
   
-     if input == 'y'
+     while input == 'y'
       n += 10
       organised_list.slice(n, 10).each.with_index(1) do |beer,index|
         puts "#{index}. #{beer.name}"
       end
-    puts  "do you want to see 10 more? type 'y' or pick one!"  
-    
+     puts "do you want to see 10 more? type 'y' or pick one!"  
+     input = gets.chomp
     end
+    get_beer_by_number(input,n)
   end
 
   
 
-  def get_beer_by_number
-    input = gets.chomp
+  def get_beer_by_number(input,n)
    if input.to_i > 0 && input.to_i <= Generator::Beer.all.length
     beer_list = Generator::Beer.all.sort {|a,b| a.name <=> b.name}
-    @current_beer = beer_list[input.to_i-1]
+    @current_beer = beer_list[input.to_i+n-1]
      puts "You picked #{@current_beer.name}, find out more type 'abv', 'food pairings' or 'description'"
     elsif input == 'exit'
       exit(input)
    else 
-    invalid_input_number 
+    invalid_input_number
    end 
   end
 
@@ -106,7 +106,6 @@
 
   def invalid_input_number
     puts "Invalid input! Are you sure you like beer? Try typing a number between 1-10" 
-    get_beer_by_number
   end
 
   def invalid_input_get_more
